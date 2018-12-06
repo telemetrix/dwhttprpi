@@ -1,0 +1,1 @@
+Telit deviceWISE HTTP Client for RPi Zero W

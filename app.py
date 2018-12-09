@@ -1,3 +1,7 @@
+import time
+import os
+import psutil
+
 from TR50 import TR50http
 
 dw_config = {
@@ -8,3 +12,12 @@ dw_config = {
     }
 
 tr50http = TR50http.TR50http(dw_config)
+
+pid = os.getpid()
+ps = psutil.Process(pid)
+
+while 1:
+    memoryUse = ps.memory_info()[0]
+    result = tr50http.execute('property.publish', {'key': 'rss', 'value': memoryUse})
+    print(tr50http.get_response())
+    time.sleep(10)
